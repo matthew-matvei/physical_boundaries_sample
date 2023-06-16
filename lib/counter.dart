@@ -1,7 +1,7 @@
 class Counter {
   int _value;
 
-  Counter.zero() : _value = 0;
+  Counter([int? value]) : _value = value ?? 0;
 
   int get value => _value;
 

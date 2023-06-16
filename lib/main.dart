@@ -96,26 +96,29 @@ class _MyHomePageState extends State<MyHomePage> {
     final retrievedCounter = await widget._counterRepository.get();
 
     setState(() {
-      _counter = retrievedCounter ?? Counter.zero();
+      _counter = retrievedCounter ?? Counter();
     });
   }
 
-  void _incrementCounter() {
+  Future<void> _incrementCounter() async {
     if (_counter == null) {
       return;
     }
 
-    setState(() {
-      _counter!.increment();
-    });
+    _counter!.increment();
+    await widget._counterRepository.save(_counter!);
+
+    setState(() {});
   }
 
-  void _decrementCounter() {
+  Future<void> _decrementCounter() async {
     if (_counter == null) {
       return;
     }
 
     if (_counter!.tryDecrement()) {
+      await widget._counterRepository.save(_counter!);
+
       setState(() {});
     }
   }

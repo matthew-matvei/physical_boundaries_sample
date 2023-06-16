@@ -5,6 +5,7 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:physical_boundaries_sample/counter.dart';
 import 'package:physical_boundaries_sample/counter_repository.dart';
@@ -56,6 +57,31 @@ void main() {
       await _decrementCounter(tester);
 
       expect(find.text('0'), findsOneWidget);
+    });
+
+    testWidgets('can find a previously set value', (tester) async {
+      final counterRepository = _InMemoryCounterRepository();
+
+      await tester.pumpWidget(
+        RootRestorationScope(
+          restorationId: "Previously set value",
+          child: MyApp(
+            counterRepository: counterRepository,
+          ),
+        ),
+      );
+      await tester.pump();
+
+      await _incrementCounter(tester);
+      await _incrementCounter(tester);
+      await _incrementCounter(tester);
+
+      expect(find.text('3'), findsOneWidget);
+
+      await tester.restartAndRestore();
+      await tester.pump();
+
+      expect(find.text('3'), findsOneWidget);
     });
   });
 }
