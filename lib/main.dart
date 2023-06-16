@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'counter.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -30,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  final Counter _counter = Counter.zero();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
               "The counter's value is:",
             ),
             Text(
-              '$_counter',
+              '${_counter.value}',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             ButtonBar(
@@ -72,18 +74,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      _counter++;
+      _counter.increment();
     });
   }
 
   void _decrementCounter() {
-    if (_counter == 0) {
-      return;
+    if (_counter.tryDecrement()) {
+      setState(() {});
     }
-
-    setState(() {
-      _counter--;
-    });
   }
 }
 
