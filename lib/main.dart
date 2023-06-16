@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:physical_boundaries_sample/counter_repository.dart';
 
 import 'counter.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp(
+    counterRepository: SharedPreferencesCounterRepository(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final CounterRepository _counterRepository;
+
+  const MyApp({super.key, required CounterRepository counterRepository})
+      : _counterRepository = counterRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -17,22 +23,36 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(
+        title: 'Flutter Demo Home Page',
+        counterRepository: _counterRepository,
+      ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({
+    super.key,
+    required this.title,
+    required CounterRepository counterRepository,
+  }) : _counterRepository = counterRepository;
 
   final String title;
+  final CounterRepository _counterRepository;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final Counter _counter = Counter.zero();
+  Counter? _counter;
+
+  @override
+  void initState() {
+    super.initState();
+    _initialiseCounter();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
               "The counter's value is:",
             ),
             Text(
-              '${_counter.value}',
+              _counter?.value == null ? 'Not yet loaded' : '${_counter!.value}',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             ButtonBar(
@@ -72,14 +92,30 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void _incrementCounter() {
+  Future<void> _initialiseCounter() async {
+    final retrievedCounter = await widget._counterRepository.get();
+
     setState(() {
-      _counter.increment();
+      _counter = retrievedCounter ?? Counter.zero();
+    });
+  }
+
+  void _incrementCounter() {
+    if (_counter == null) {
+      return;
+    }
+
+    setState(() {
+      _counter!.increment();
     });
   }
 
   void _decrementCounter() {
-    if (_counter.tryDecrement()) {
+    if (_counter == null) {
+      return;
+    }
+
+    if (_counter!.tryDecrement()) {
       setState(() {});
     }
   }

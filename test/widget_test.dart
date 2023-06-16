@@ -6,13 +6,18 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:physical_boundaries_sample/counter.dart';
+import 'package:physical_boundaries_sample/counter_repository.dart';
 
 import 'package:physical_boundaries_sample/main.dart';
 
 void main() {
   group('Counter', () {
     testWidgets('can be incremented', (tester) async {
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(
+        MyApp(counterRepository: _InMemoryCounterRepository()),
+      );
+      await tester.pump();
 
       expect(find.text('0'), findsOneWidget);
 
@@ -22,7 +27,10 @@ void main() {
     });
 
     testWidgets('can be decremented', (tester) async {
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(
+        MyApp(counterRepository: _InMemoryCounterRepository()),
+      );
+      await tester.pump();
 
       expect(find.text('0'), findsOneWidget);
 
@@ -38,7 +46,10 @@ void main() {
     });
 
     testWidgets('cannot be decremented to a negative value', (tester) async {
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(
+        MyApp(counterRepository: _InMemoryCounterRepository()),
+      );
+      await tester.pump();
 
       expect(find.text('0'), findsOneWidget);
 
@@ -57,4 +68,16 @@ Future<void> _incrementCounter(WidgetTester tester) async {
 Future<void> _decrementCounter(WidgetTester tester) async {
   await tester.tap(find.byKey(Keys.decrement.value));
   await tester.pump();
+}
+
+class _InMemoryCounterRepository implements CounterRepository {
+  Counter? _counter;
+
+  @override
+  Future<Counter?> get() async => _counter;
+
+  @override
+  Future save(Counter counter) async {
+    _counter = counter;
+  }
 }
