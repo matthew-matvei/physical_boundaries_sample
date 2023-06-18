@@ -73,16 +73,39 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             ButtonBar(
+              alignment: MainAxisAlignment.center,
               children: [
                 TextButton(
                   key: Keys.decrement.value,
                   onPressed: _decrementCounter,
-                  child: const Text('-'),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(
+                      Theme.of(context).colorScheme.primaryContainer,
+                    ),
+                    overlayColor: MaterialStatePropertyAll(
+                      Theme.of(context).colorScheme.inversePrimary,
+                    ),
+                  ),
+                  child: Text(
+                    '-',
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
                 ),
                 TextButton(
                   key: Keys.increment.value,
                   onPressed: _incrementCounter,
-                  child: const Text('+'),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(
+                      Theme.of(context).colorScheme.primaryContainer,
+                    ),
+                    overlayColor: MaterialStatePropertyAll(
+                      Theme.of(context).colorScheme.inversePrimary,
+                    ),
+                  ),
+                  child: Text(
+                    '+',
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
                 )
               ],
             )
