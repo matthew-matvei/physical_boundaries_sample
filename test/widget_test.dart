@@ -7,10 +7,10 @@
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:physical_boundaries_sample/counter.dart';
-import 'package:physical_boundaries_sample/counter_repository.dart';
+import 'package:physical_boundaries_sample/domain/counter.dart';
+import 'package:physical_boundaries_sample/infrastructure/counter_repository.dart';
 
-import 'package:physical_boundaries_sample/main.dart';
+import 'package:physical_boundaries_sample/presentation/my_app.dart';
 
 void main() {
   group('Counter', () {

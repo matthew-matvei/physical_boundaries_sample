@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'counter.dart';
+import '../domain/counter.dart';
 
 abstract class CounterRepository {
   Future<Counter?> get();
