@@ -18,3 +18,8 @@ class Counter {
     return true;
   }
 }
+
+abstract class CounterRepository {
+  Future<Counter?> get();
+  Future save(Counter counter);
+}

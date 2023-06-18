@@ -1,0 +1,13 @@
+name: infrastructure
+description: A new Flutter package project.
+version: 0.0.1
+homepage:
+publish_to: none
+
+environment:
+  sdk: '>=3.0.2 <4.0.0'
+
+dependencies:
+  domain:
+    path: ../domain
+  shared_preferences: ^2.1.2

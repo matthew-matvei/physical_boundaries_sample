@@ -8,7 +8,6 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:physical_boundaries_sample/infrastructure/counter_repository.dart';
 
 import 'package:physical_boundaries_sample/presentation/my_app.dart';
 

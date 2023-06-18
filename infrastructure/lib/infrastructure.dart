@@ -1,11 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class CounterRepository {
-  Future<Counter?> get();
-  Future save(Counter counter);
-}
-
 class SharedPreferencesCounterRepository implements CounterRepository {
   static const _counterKey = "counterValue";
 

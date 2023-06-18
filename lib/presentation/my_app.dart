@@ -1,6 +1,5 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:physical_boundaries_sample/infrastructure/counter_repository.dart';
 
 class MyApp extends StatelessWidget {
   final CounterRepository _counterRepository;
