@@ -29,5 +29,6 @@ migrate_working_dir/
 .packages
 build/
 
+local.properties
 flutter_export_environment.sh
 Generated.xcconfig
