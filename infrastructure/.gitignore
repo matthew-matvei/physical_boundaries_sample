@@ -32,3 +32,4 @@ build/
 local.properties
 flutter_export_environment.sh
 Generated.xcconfig
+Flutter-Generated.xcconfig
