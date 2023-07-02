@@ -1,6 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../domain/counter.dart';
+import 'package:physical_boundaries_sample/domain/counter.dart';
 
 abstract class CounterRepository {
   Future<Counter?> get();
