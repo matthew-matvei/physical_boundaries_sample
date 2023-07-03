@@ -1,0 +1,9 @@
+name: domain
+description: A new Flutter package project.
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: '>=3.0.2 <4.0.0'
+dev_dependencies:
+  test: ^1.24.3

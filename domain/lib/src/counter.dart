@@ -1,7 +1,15 @@
 class Counter {
   int _value;
 
-  Counter([int? value]) : _value = value ?? 0;
+  Counter([int? value]) : _value = value ?? 0 {
+    if (_value < 0) {
+      throw ArgumentError.value(
+        value,
+        "value",
+        "Counter cannot have a negative value",
+      );
+    }
+  }
 
   int get value => _value;
 

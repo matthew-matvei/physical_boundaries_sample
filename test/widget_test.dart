@@ -5,9 +5,9 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:domain/domain.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:physical_boundaries_sample/domain/counter.dart';
 import 'package:physical_boundaries_sample/infrastructure/counter_repository.dart';
 
 import 'package:physical_boundaries_sample/presentation/my_app.dart';
