@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infrastructure/infrastructure.dart';
-import 'package:physical_boundaries_sample/presentation/my_app.dart';
+import 'package:presentation/presentation.dart';
 
 void main() {
   runApp(MyApp(

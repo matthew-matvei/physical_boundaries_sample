@@ -1,0 +1,19 @@
+name: presentation
+description: A new Flutter package project.
+version: 0.0.1
+homepage:
+publish_to: none
+
+environment:
+  sdk: '>=3.0.2 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  domain:
+    path: ../domain
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

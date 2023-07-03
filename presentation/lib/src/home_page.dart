@@ -1,27 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-
-class MyApp extends StatelessWidget {
-  final CounterRepository _counterRepository;
-
-  const MyApp({super.key, required CounterRepository counterRepository})
-      : _counterRepository = counterRepository;
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Physical Boundaries',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: MyHomePage(
-        title: 'Physical Boundaries Sample',
-        counterRepository: _counterRepository,
-      ),
-    );
-  }
-}
+import 'package:presentation/src/keys.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({
@@ -137,13 +116,4 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {});
     }
   }
-}
-
-enum Keys {
-  increment(ValueKey("increment")),
-  decrement(ValueKey("decrement"));
-
-  final ValueKey value;
-
-  const Keys(this.value);
 }

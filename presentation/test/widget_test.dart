@@ -8,8 +8,8 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:physical_boundaries_sample/presentation/my_app.dart';
+import 'package:presentation/presentation.dart';
+import 'package:presentation/src/keys.dart';
 
 void main() {
   group('Counter', () {
